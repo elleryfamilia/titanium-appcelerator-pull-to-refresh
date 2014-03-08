@@ -7,6 +7,7 @@ var PullToRefresh = {
 	_status: null,
 	_lastUpdate: null,
 	_activityIndicator: null,
+	_canPerformRefresh: false,
 	
 	createPullToRefresh: function(parameters) 
 	{
@@ -38,7 +39,8 @@ var PullToRefresh = {
 			font:{fontSize:13,fontWeight:"bold"}
 		});
 		PullToRefresh._view.add(PullToRefresh._status);
-
+		
+		/*
 		PullToRefresh._lastUpdate = Ti.UI.createLabel({
 			text:"Última atualização: " + formatDate(),
 			left:55,
@@ -51,6 +53,7 @@ var PullToRefresh = {
 			font:{fontSize:12}
 		});
 		PullToRefresh._view.add(PullToRefresh._lastUpdate);
+		*/
 		
 		PullToRefresh._activityIndicator = Titanium.UI.createActivityIndicator({
 			left:20,
@@ -75,6 +78,7 @@ var PullToRefresh = {
 			PullToRefresh._pulling = true;
 			PullToRefresh._arrow.animate({transform:t, duration:180});
 			PullToRefresh._status.text = "Solte para recarregar...";
+			PullToRefresh._canPerformRefresh = true;
 		}
 		else if (PullToRefresh._pulling && offset > -65.0 && offset < 0)
 		{
@@ -82,12 +86,13 @@ var PullToRefresh = {
 			var t = Ti.UI.create2DMatrix();
 			PullToRefresh._arrow.animate({transform:t,duration:180});
 			PullToRefresh._status.text = "Puxe para recarregar...";
+			PullToRefresh._canPerformRefresh = false;
 		}
 	},
 
 	_begin: function(e, tableView)
 	{
-		if (PullToRefresh._pulling && !PullToRefresh._reloading && e.contentOffset.y <= -65.0)
+		if (PullToRefresh._pulling && !PullToRefresh._reloading && PullToRefresh._canPerformRefresh)
 		{
 			PullToRefresh._reloading = true;
 			PullToRefresh._pulling = false;
