@@ -1,5 +1,4 @@
-
-var pullToRefresh = require("lib/pulltorefresh.js"),
+var pullToRefresh = require("lib/pulltorefresh.js").PullToRefresh,
 	count = 0,
 	rows = [],
 	win = Ti.UI.createWindow(),
@@ -13,7 +12,7 @@ var refreshView = pullToRefresh.createPullToRefresh({
 	action: function() {
 		setTimeout(function() {
 			refresh();
-		}, 500)
+		}, 500);
 	}
 });
 tableView.headerPullView = refreshView;
@@ -38,7 +37,7 @@ var refresh = function() {
 	pullToRefresh._end(function() {
 		tableView.setContentInsets({top:0},{animated:true});
 	});
-}
+};
 
 win.addEventListener("open", function() {
 	refresh();
