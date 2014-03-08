@@ -29,7 +29,7 @@ var PullToRefresh = {
 		PullToRefresh._view.add(PullToRefresh._arrow);
 
 		PullToRefresh._status = Ti.UI.createLabel({
-			text:"Puxe para recarregar...",
+			text:"Pull to refresh...",
 			left:55,
 			width:220,
 			bottom:35,
@@ -77,7 +77,7 @@ var PullToRefresh = {
 			t = t.rotate(-180);
 			PullToRefresh._pulling = true;
 			PullToRefresh._arrow.animate({transform:t, duration:180});
-			PullToRefresh._status.text = "Solte para recarregar...";
+			PullToRefresh._status.text = "Release to refresh...";
 			PullToRefresh._canPerformRefresh = true;
 		}
 		else if (PullToRefresh._pulling && offset > -65.0 && offset < 0)
@@ -85,7 +85,7 @@ var PullToRefresh = {
 			PullToRefresh._pulling = false;
 			var t = Ti.UI.create2DMatrix();
 			PullToRefresh._arrow.animate({transform:t,duration:180});
-			PullToRefresh._status.text = "Puxe para recarregar...";
+			PullToRefresh._status.text = "Pull to refresh...";
 			PullToRefresh._canPerformRefresh = false;
 		}
 	},
@@ -98,7 +98,7 @@ var PullToRefresh = {
 			PullToRefresh._pulling = false;
 			PullToRefresh._arrow.hide();
 			PullToRefresh._activityIndicator.show();
-			PullToRefresh._status.text = "Carregando...";
+			PullToRefresh._status.text = "Updating...";
 			tableView.setContentInsets({top:60},{animated:true});
 			PullToRefresh._arrow.transform = Ti.UI.create2DMatrix();
 			PullToRefresh._loadingCallback();
@@ -109,8 +109,8 @@ var PullToRefresh = {
 	{
 		callback();
 		PullToRefresh._reloading = false;
-		PullToRefresh._lastUpdate.text = "Última atualização: " + formatDate();
-		PullToRefresh._status.text = "Puxe para recarregar...";
+		//PullToRefresh._lastUpdate.text = "Última atualização: " + formatDate();
+		PullToRefresh._status.text = "Pull to refresh...";
 		PullToRefresh._activityIndicator.hide();
 		PullToRefresh._arrow.show();
 	}
