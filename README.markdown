@@ -1,5 +1,6 @@
 <h1>What?</h1>
-<p>This method, will help you to make a view "pull to refresh" in your TableView.</p>
+<p>This libray will help you add "pull to refresh" to your TableViews. It is a fork of robedge's code. I fix a number of issues with Titanium 3.x, removed the date.js dependency, translate some text, and restructured the library to allow multiple instances.</p>
+
 <h1>How?</h1>
 <p>To use this method, you will need to include this files in your project:</p>
 <pre>var PullToRefresh = require("/lib/pulltorefresh");</pre>
