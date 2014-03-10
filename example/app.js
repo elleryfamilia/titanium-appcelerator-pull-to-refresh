@@ -1,12 +1,13 @@
-var pullToRefresh = require("lib/pulltorefresh.js").PullToRefresh,
+var PullToRefresh = require("lib/pulltorefresh.js");,
 	count = 0,
 	rows = [],
 	win = Ti.UI.createWindow(),
-	tableView = Ti.UI.createTableView();
+	tableView = Ti.UI.createTableView(),
+	pullToRefresh = new PullToRefresh();
 
 
 //pull to refresh
-var refreshView = pullToRefresh.createPullToRefresh({
+var refreshView = pullToRefresh.createPullToRefreshView({
 	backgroundColor: '#CCC',
 	labelColor: '#000',
 	action: function() {
