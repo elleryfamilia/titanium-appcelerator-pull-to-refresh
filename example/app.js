@@ -1,6 +1,7 @@
-var PullToRefresh = require("lib/pulltorefresh.js");,
+var PullToRefresh = require("lib/pulltorefresh.js"),
 	count = 0,
 	rows = [],
+	
 	win = Ti.UI.createWindow(),
 	tableView = Ti.UI.createTableView(),
 	pullToRefresh = new PullToRefresh();
